@@ -2,6 +2,7 @@ import { AuthLoginLayout } from "./AuthLoginLayout.jsx";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/index.js";
 import Axios from 'axios';
+import { SOCKET_URL } from "../../config/default.js";
 
 Axios.defaults.withCredentials = true
 
@@ -15,7 +16,7 @@ export const AuthLoginContainer = () => {
         e.preventDefault();
         console.log(userAuth, password)
 
-        Axios.post( 'http://localhost:8080/api/auth/login', {
+        Axios.post( `${ SOCKET_URL }/api/auth/login`, {
             username: userAuth,
             password: password
         } ).then( ( { data } ) => {
