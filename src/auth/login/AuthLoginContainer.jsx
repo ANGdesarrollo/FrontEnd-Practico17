@@ -14,12 +14,11 @@ export const AuthLoginContainer = () => {
 
     const handleSubmit = async( e ) => {
         e.preventDefault();
-        console.log(userAuth, password)
 
         Axios.post( `${ SOCKET_URL }/api/auth/login`, {
             username: userAuth,
             password: password
-        } ).then( ( { data } ) => {
+        }, {withCredentials: true} ).then( ( { data } ) => {
             if( data.status ) {
                 navigate( '/home' )
             } else {
