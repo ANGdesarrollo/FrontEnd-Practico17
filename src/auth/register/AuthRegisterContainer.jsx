@@ -2,6 +2,7 @@ import { AuthRegisterLayout } from "./AuthRegisterLayout";
 import { useForm, useValidations } from "../../hooks/index.js";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { SOCKET_URL } from "../../config/default.js";
 
 Axios.defaults.withCredentials = true
 
@@ -18,13 +19,13 @@ export const AuthRegisterContainer = () => {
         const isValidatePw = validateField( password );
         const isValidateRepeatPw = validateField( repeatPassword );
 
-        if( isValidateEmail && isValidatePw === isValidateRepeatPw ) {
-            Axios.post( 'http://localhost:8080/api/auth/register', {
+        if ( isValidateEmail && isValidatePw === isValidateRepeatPw ) {
+            Axios.post( `${ SOCKET_URL }/api/auth/register`, {
                 username: email,
                 password
             } ).then( ( { data } ) => {
-                navigate('/login')
-            } ).catch( err => navigate('/errorRegister') )
+                navigate( '/login' )
+            } ).catch( err => navigate( '/errorRegister' ) )
 
         } else {
             alert( 'Invalid email or password' );
