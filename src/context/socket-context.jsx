@@ -20,7 +20,7 @@ export const SocketsProvider = ({children}) => {
     const [percentage, setPercentage] =  useState('');
     const [allProducts, setAllProducts] = useState([])
 
-    const { data, isLoading } = useFetch(`${ SOCKET_URL }/api/test-products)`)
+    const { data, isLoading } = useFetch(`${ SOCKET_URL }/api/test-products`)
     const { denormalizedData } = useNormalizr();
     const { showCompressionPercentage } = useCompressed()
     const { validateField, validateEmail, validateImageUrl } = useValidations()
